@@ -11,13 +11,26 @@
   </script>
 
   <style type="text/css">
-    body {
-      color: white;
-      padding-top: 20%;
+    html {
+      height: 100%;
     }
+
+    body {
+      height: 100%;
+      color: white;
+      margin: 0px;
+      flex-direction: column-reverse;
+      display: flex;
+    }
+
     a:link, a:visited {
       color: white;
     }
+
+    section {
+      padding: 6px 12px;
+    }
+
     canvas[resize] {
       position: absolute;
       top: 0px;
@@ -31,25 +44,25 @@
 
   </head>
   <body>
-    <div class="canvas">
-      <canvas resize="true" hidpi="off" id="canvas-1"></canvas>
-    </div>
-    <h1>Kevin Chavez</h1>
-    <ul>
-      <li><a href="doc/Kevin%20Chavez.pdf">Resume</a></li>
-      <li><a href="https://twitter.com/aykev">Twitter</a></li>
-      <li><a href="https://github.com/mrkev">Github</a></li>
-      <li>Tumblr: <a href="shoesnosocks.tumblr.com">personal</a> | <a href="combuskev.tumblr.com">reblogs</a></li>
-      <li><a href="https://instagram.com/combuskev">Instagram</a></li>
-    </ul>
-
-    <h2>Page TODO:</h2>
-    <ul>
-      <li>Make look nicer</li>
-      <li>Add missing links</li>
-      <li>Images?</li>
-      <li>Monetize??</li>
-    </ul>
+    <canvas resize="true" hidpi="off" id="canvas-1"></canvas>
+    <section>
+      <h1>Kevin Chavez</h1>
+      <ul>
+        <li><a href="doc/Kevin%20Chavez.pdf">Resume</a></li>
+        <li><a href="https://twitter.com/aykev">Twitter</a></li>
+        <li><a href="https://github.com/mrkev">Github</a></li>
+        <li>Tumblr: <a href="shoesnosocks.tumblr.com">personal</a> | <a href="combuskev.tumblr.com">reblogs</a></li>
+        <li><a href="https://instagram.com/combuskev">Instagram</a></li>
+      </ul>
+  
+      <h2>Page TODO:</h2>
+      <ul>
+        <li>Make look nicer</li>
+        <li>Add missing links</li>
+        <li>Images?</li>
+        <li>Monetize??</li>
+      </ul>
+    </section>
 
     <script src="js/main.js" type="text/paperscript" canvas="canvas-1"></script>
 
