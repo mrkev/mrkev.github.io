@@ -34,6 +34,10 @@ function sketch2() {
   document.body.appendChild(script("/js/p5test.js"));
 }
 
-var sketches = [sketch1, sketch2];
+function sketch3() {
+  document.body.appendChild(script("/js/perlin.js"));
+}
+
+var sketches = [sketch1, sketch2, sketch3];
 var rand = Math.floor(Math.random() * sketches.length);
 sketches[rand]();
