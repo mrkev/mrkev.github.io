@@ -1,3 +1,4 @@
+// creates DOM element of type
 function e(type, attrs) {
   var elem = document.createElement(type);
   Object.keys(attrs).forEach(function(key) {
@@ -6,13 +7,15 @@ function e(type, attrs) {
   return elem;
 }
 
+// loads a script
 function script(src, attrs) {
   return e("script", { ...attrs, src });
 }
 
 //////////////////
 
-function sketch1() {
+/** Squares that show a pic */
+function sketch0() {
   // Append canvas for paper
   document.getElementById("exp").appendChild(
     e("canvas", {
@@ -30,14 +33,34 @@ function sketch1() {
   );
 }
 
-function sketch2() {
+/** Waves with x-axis perlin noise */
+function sketch1() {
   document.body.appendChild(script("/js/p5test.js"));
 }
 
-function sketch3() {
+/** Donut with cool flow effect */
+function sketch2() {
   document.body.appendChild(script("/js/perlin.js"));
 }
 
-var sketches = [sketch1, sketch2, sketch3];
+/** Donut with cool flow effect */
+function sketch3() {
+  document.body.prepend(
+    e("canvas", {
+      // resize: "true",
+      // hidpi: "off",
+      id: "canvas-1"
+    })
+  );
+  document.body.appendChild(script("/js/particles.js"));
+}
+
+var sketches = [sketch0, sketch1, sketch2, sketch3];
 var rand = Math.floor(Math.random() * sketches.length);
-sketches[rand]();
+
+var testing = null;
+if (testing !== null) {
+  sketches[testing]();
+} else {
+  sketches[rand]();
+}
