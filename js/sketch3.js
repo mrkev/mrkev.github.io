@@ -1,3 +1,5 @@
+/** Particles */
+
 var COLOR_BACKGROUND = "#D9CB9E";
 var COLOR_MOUSE = "#DC3522";
 var COLOR_1 = "#374140";

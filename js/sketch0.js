@@ -1,11 +1,12 @@
+/** Squares */
 // Based on 'JPEG Raster' by Jonathan Puckey:
 // http://www.flickr.com/photos/puckey/3179779686/in/photostream/
 
 // Create a raster item:
-var raster = new Raster('/img/photo.jpg');
+var raster = new Raster("/img/photo.jpg");
 var loaded = false;
 
-raster.on('load', function() {
+raster.on("load", function() {
   loaded = true;
   onResize();
 });
@@ -15,10 +16,8 @@ raster.visible = false;
 
 var lastPos = view.center;
 function moveHandler(event) {
-  if (!loaded)
-    return;
-  if (lastPos.getDistance(event.point) < 10)
-    return;
+  if (!loaded) return;
+  if (lastPos.getDistance(event.point) < 10) return;
   lastPos = event.point;
 
   var size = this.bounds.size.clone();
@@ -49,8 +48,7 @@ function moveHandler(event) {
 }
 
 function onResize(event) {
-  if (!loaded)
-    return;
+  if (!loaded) return;
   project.activeLayer.removeChildren();
 
   // Transform the raster so that it fills the bounding rectangle

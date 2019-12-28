@@ -1,3 +1,5 @@
+/** Donut with cool flow effect */
+
 function sketch(s) {
   const noiseScale = 0.01;
   function noise(x, y) {
