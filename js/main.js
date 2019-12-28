@@ -58,7 +58,7 @@ function sketch3() {
 var sketches = [sketch0, sketch1, sketch2, sketch3];
 var rand = Math.floor(Math.random() * sketches.length);
 
-var testing = 1;
+var testing = null;
 if (testing !== null) {
   sketches[testing]();
 } else {
