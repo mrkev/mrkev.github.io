@@ -1,7 +1,7 @@
+/** perlin noise waves */
 noise.seed(Math.random());
 var COLOR_BACKGROUND = "#000";
 var NOISE_SCALE = 0.017;
-var STROKE_COLOR = "#FFF";
 
 var canvas = document.getElementById("canvas-1");
 var context = canvas.getContext("2d");

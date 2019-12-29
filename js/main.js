@@ -1,3 +1,6 @@
+var paperjs =
+  "https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.4/paper-full.min.js";
+
 // creates DOM element of type
 function e(type, attrs) {
   var elem = document.createElement(type);
@@ -8,8 +11,9 @@ function e(type, attrs) {
 }
 
 // usual is a numbered script + maybe a canvas
-function sketch(i, withCanvas) {
+function sketch(i, withCanvas, deps) {
   return function() {
+    // Maybe add a canvas
     if (withCanvas) {
       document.body.prepend(
         e("canvas", {
@@ -17,6 +21,8 @@ function sketch(i, withCanvas) {
         })
       );
     }
+
+    // Add the sketch script
     document.body.appendChild(
       e("script", {
         src: `/js/sketch${i}.js`
@@ -36,6 +42,14 @@ function sketch0() {
       id: "canvas-1"
     })
   );
+
+  // append paper.js
+  document.body.appendChild(
+    e("script", {
+      src: paperjs
+    })
+  );
+
   // Append paperscript"/js/sketch0.js",
   document.body.appendChild(
     e("script", {
