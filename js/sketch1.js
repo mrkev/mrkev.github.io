@@ -1,6 +1,7 @@
 /** perlin noise waves */
 noise.seed(Math.random());
 var COLOR_BACKGROUND = "#000";
+var COLOR_FOREGROUND = "#FFF";
 var NOISE_SCALE = 0.017;
 
 var canvas = document.getElementById("canvas-1");
@@ -26,20 +27,23 @@ function init() {
 
 function update() {
   context.fillStyle = COLOR_BACKGROUND;
+  context.strokeStyle = COLOR_FOREGROUND;
   context.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
+  context.lineWidth = 2;
   for (var x = 0; x < window.innerWidth; x++) {
     var noiseVal = noise.perlin2(
       (mouse.x + x) * NOISE_SCALE,
       mouse.y * NOISE_SCALE
     );
 
-    const noiseValUnit = (noiseVal + 1) / 2;
-    context.strokeStyle = `rgb(${noiseValUnit * 255},${noiseValUnit *
-      255},${noiseValUnit * 255})`;
-    context.beginPath();
-    context.lineWidth = 2;
+    var noiseValUnit = (noiseVal + 1) / 2;
+    var lum = String(Math.ceil(noiseValUnit * 100)) + "%";
+    // This uses a lot of memory apparently, and slows things
+    // down a lot. Makes sense, it's a lot of strings.
+    // context.strokeStyle = "hsl(0,0%," + lum + ")";
 
+    context.beginPath();
     context.moveTo(x, mouse.y + noiseVal * 80);
     context.lineTo(x, window.innerHeight);
     context.stroke();
