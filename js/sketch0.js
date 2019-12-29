@@ -1,4 +1,4 @@
-/** Squares */
+/** Squares that show a pic */
 // Based on 'JPEG Raster' by Jonathan Puckey:
 // http://www.flickr.com/photos/puckey/3179779686/in/photostream/
 

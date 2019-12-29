@@ -73,9 +73,20 @@
         z-index: -1000;
       }
     </style>
+    <!-- For halftone effect -->
+    <!-- From: https://github.com/patrickmatte/color-halftone-filter -->
+    <script src="js/lib/tsunami/utils/Debug.js"></script>
+    <script src="js/lib/tsunami/geom/Rectangle.js"></script>
+    <script src="js/lib/tsunami/geom/Point.js"></script>
+    <script src="js/lib/tsunami/geom/Ratio.js"></script>
+    <script src="js/lib/tsunami/filters/Blendmode.js"></script>
+    <script src="js/lib/tsunami/filters/ColorHalftoneFilter.js"></script>
+    <!-- Perlin noise. window.noise -->
+    <!-- From: https://github.com/josephg/noisejs -->
+    <script src="/js/lib/perlin.js"></script>
+    <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.4/paper-full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
-    <script src="/js/lib/perlin.js"></script>
   </head>
   <body>
     <div id="exp">

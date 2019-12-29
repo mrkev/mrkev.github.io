@@ -7,14 +7,26 @@ function e(type, attrs) {
   return elem;
 }
 
-// loads a script
-function script(src, attrs) {
-  return e("script", { ...attrs, src });
+// usual is a numbered script + maybe a canvas
+function sketch(i, withCanvas) {
+  return function() {
+    if (withCanvas) {
+      document.body.prepend(
+        e("canvas", {
+          id: "canvas-1"
+        })
+      );
+    }
+    document.body.appendChild(
+      e("script", {
+        src: `/js/sketch${i}.js`
+      })
+    );
+  };
 }
 
 //////////////////
 
-/** Squares that show a pic */
 function sketch0() {
   // Append canvas for paper
   document.getElementById("exp").appendChild(
@@ -24,38 +36,22 @@ function sketch0() {
       id: "canvas-1"
     })
   );
-  // Append paperscript
+  // Append paperscript"/js/sketch0.js",
   document.body.appendChild(
-    script("/js/sketch0.js", {
+    e("script", {
+      src: "/js/sketch0.js",
       type: "text/paperscript",
       canvas: "canvas-1"
     })
   );
 }
 
-function sketch1() {
-  document.body.prepend(
-    e("canvas", {
-      id: "canvas-1"
-    })
-  );
-  document.body.appendChild(script("/js/sketch1.js"));
-}
+var sketch1 = sketch(1, true);
+var sketch2 = sketch(2);
+var sketch3 = sketch(3, true);
+var sketch4 = sketch(4, true);
 
-function sketch2() {
-  document.body.appendChild(script("/js/sketch2.js"));
-}
-
-function sketch3() {
-  document.body.prepend(
-    e("canvas", {
-      id: "canvas-1"
-    })
-  );
-  document.body.appendChild(script("/js/sketch3.js"));
-}
-
-var sketches = [sketch0, sketch1, sketch2, sketch3];
+var sketches = [sketch0, sketch1, sketch2, sketch3, sketch4];
 var rand = Math.floor(Math.random() * sketches.length);
 
 var testing = null;
