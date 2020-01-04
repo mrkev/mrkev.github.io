@@ -64,11 +64,12 @@ var sketch1 = sketch(1, true);
 var sketch2 = sketch(2, true);
 var sketch3 = sketch(3, true);
 var sketch4 = sketch(4, true);
+var sketch5 = sketch(5);
 
-var sketches = [sketch0, sketch1, sketch2, sketch3, sketch4];
+var sketches = [sketch0, sketch1, sketch2, sketch3, sketch4, sketch5];
 var rand = Math.floor(Math.random() * sketches.length);
 
-var testing = 2;
+var testing = null;
 if (testing !== null) {
   sketches[testing]();
 } else {
