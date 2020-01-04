@@ -61,14 +61,14 @@ function sketch0() {
 }
 
 var sketch1 = sketch(1, true);
-var sketch2 = sketch(2);
+var sketch2 = sketch(2, true);
 var sketch3 = sketch(3, true);
 var sketch4 = sketch(4, true);
 
 var sketches = [sketch0, sketch1, sketch2, sketch3, sketch4];
 var rand = Math.floor(Math.random() * sketches.length);
 
-var testing = null;
+var testing = 2;
 if (testing !== null) {
   sketches[testing]();
 } else {
