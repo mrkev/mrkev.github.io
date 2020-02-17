@@ -13,9 +13,12 @@ function onMouseMove(e) {
   mouse.y = e.layerY;
 }
 
+let HALF = window.innerHeight / 2;
+
 function onCanvasResize(e) {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+  HALF = window.innerHeight / 2;
 }
 
 function init() {
@@ -26,26 +29,28 @@ function init() {
 }
 
 function update() {
+  const WINDOW_WIDTH = window.innerWidth;
+  const WINDOW_HEIGHT = window.innerHeight;
   context.fillStyle = COLOR_BACKGROUND;
   context.strokeStyle = COLOR_FOREGROUND;
-  context.fillRect(0, 0, window.innerWidth, window.innerHeight);
-
+  context.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
   context.lineWidth = 2;
-  for (var x = 0; x < window.innerWidth; x++) {
-    var noiseVal = noise.perlin2(
+
+  for (let x = 0; x < WINDOW_WIDTH; x++) {
+    const noiseVal = noise.perlin2(
       (mouse.x + x) * NOISE_SCALE,
       mouse.y * NOISE_SCALE
     );
 
-    var noiseValUnit = (noiseVal + 1) / 2;
-    var lum = String(Math.ceil(noiseValUnit * 100)) + "%";
+    // var noiseValUnit = (noiseVal + 1) / 2;
+    // var lum = String(Math.ceil(noiseValUnit * 100)) + "%";
     // This uses a lot of memory apparently, and slows things
     // down a lot. Makes sense, it's a lot of strings.
     // context.strokeStyle = "hsl(0,0%," + lum + ")";
 
     context.beginPath();
     context.moveTo(x, mouse.y + noiseVal * 80);
-    context.lineTo(x, window.innerHeight);
+    context.lineTo(x, HALF);
     context.stroke();
   }
 
