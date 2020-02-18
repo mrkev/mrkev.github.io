@@ -5,6 +5,10 @@ var COLOR_MOUSE = "#DC3522";
 var COLOR_1 = "#374140";
 var COLOR_2 = "#2A2C2B";
 var COLOR_3 = "#1E1E20";
+
+let WINDOW_HEIGHT = window.innerHeight;
+let WINDOW_WIDTH = window.innerWidth;
+
 ////////////////////////////// Particles
 
 function randDir() {
@@ -16,8 +20,8 @@ function randBetween(a, b) {
 }
 
 function Particle() {
-  this.x = Math.random() * window.innerWidth;
-  this.y = Math.random() * window.innerHeight;
+  this.x = Math.random() * WINDOW_WIDTH;
+  this.y = Math.random() * WINDOW_HEIGHT;
   this.vx = randDir() * randBetween(1, 3);
   this.vy = randDir() * randBetween(1, 3);
   this.past = []; // to draw the tail
@@ -30,13 +34,13 @@ Particle.prototype.tick = function() {
   this.x += this.vx;
   this.y += this.vy;
 
-  if (this.x > window.innerWidth) {
+  if (this.x > WINDOW_WIDTH) {
     this.vx *= -1;
   } else if (this.x < 0) {
     this.vx = 1 + Math.random();
   }
 
-  if (this.y > window.innerHeight) {
+  if (this.y > WINDOW_HEIGHT) {
     this.vy = -1;
   } else if (this.y < 0) {
     this.vy = 1;
@@ -94,8 +98,10 @@ var canvas = document.getElementById("canvas-1");
 var context = canvas.getContext("2d");
 
 function onCanvasResize(e) {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  WINDOW_HEIGHT = window.innerHeight;
+  WINDOW_WIDTH = window.innerWidth;
+  canvas.width = WINDOW_WIDTH;
+  canvas.height = WINDOW_HEIGHT;
 }
 
 function init() {
@@ -109,7 +115,7 @@ function init() {
 function update() {
   requested = false;
   context.fillStyle = COLOR_BACKGROUND;
-  context.fillRect(0, 0, window.innerWidth, window.innerHeight);
+  context.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 
   // mouse velocity = hypothenuse of x and y velocity
   var mV = Math.sqrt(Math.pow(mouse.vx, 2) + Math.pow(mouse.vy, 2));
