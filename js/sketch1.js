@@ -21,8 +21,17 @@ function onCanvasResize(e) {
   HALF = window.innerHeight / 2;
 }
 
+// Prevents window from moving on touch on newer browsers.
+window.addEventListener(
+  "touchmove",
+  function(event) {
+    event.preventDefault();
+  },
+  { passive: false }
+);
+
 function init() {
-  canvas.addEventListener("mousemove", onMouseMove, false);
+  canvas.addEventListener("pointermove", onMouseMove, false);
   window.addEventListener("resize", onCanvasResize, false);
   window.requestAnimationFrame(update);
   onCanvasResize();
