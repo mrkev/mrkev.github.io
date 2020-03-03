@@ -72,6 +72,9 @@ function Mouse() {
 
 var requested = false; // debounce this method
 Mouse.prototype.onMove = function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
   if (requested) {
     return;
   }
@@ -104,8 +107,17 @@ function onCanvasResize(e) {
   canvas.height = WINDOW_HEIGHT;
 }
 
+// Prevents window from moving on touch on newer browsers.
+window.addEventListener(
+  "touchmove",
+  function(event) {
+    event.preventDefault();
+  },
+  { passive: false }
+);
+
 function init() {
-  canvas.addEventListener("mousemove", mouse.onMove.bind(mouse), false);
+  canvas.addEventListener("pointermove", mouse.onMove.bind(mouse), false);
   window.addEventListener("resize", onCanvasResize, false);
   window.requestAnimationFrame(update);
   // context.beginPath();
