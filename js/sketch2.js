@@ -2,7 +2,7 @@
 
 noise.seed(Math.random());
 var COLOR_BACKGROUND = "#000";
-var NOISE_SCALE = 0.007;
+var NOISE_SCALE = 0.006;
 
 var canvas = document.getElementById("canvas-1");
 var context = canvas.getContext("2d");
@@ -15,6 +15,10 @@ function onCanvasResize(e) {
   points = [];
   createPoints();
 }
+
+var randNum = function (min = 0, max = 1) {
+  return min + Math.random() * (max - min);
+};
 
 class Point {
   constructor(x, y, color, weight = 10, decay = 0.03) {
@@ -31,7 +35,13 @@ class Point {
       return;
     }
     const { x, y, color, weight, decay, lean } = this;
-    const direction = perlin(x, y) * 2 * Math.PI;
+    // The distribution of perlin(x,y) is not uniform,
+    // we end up having very few close to 0 or 1, and a lot close to 0.5.
+    // So instead of doing Math.PI * 2 (most particles would go all in
+    // the same direction) we do Math.PI * 3 to add some more variance.
+    var direction = perlin(x, y) * 3 * Math.PI;
+    // We add a little noise to make it more gritty and hairy.
+    direction += randNum(-0.5, 0.5);
 
     const c = (color >> 0).toString(16);
     const fill = `#${c}${c}${c}`;
@@ -61,9 +71,12 @@ function createPoints() {
   const cx = window.innerWidth / 2;
   const cy = window.innerHeight / 2;
 
-  // 10 circles
+  // 12 circles
   for (var c = 0; c < 12; c++) {
-    const dist = 100 + c * 30;
+    const pageRadius = Math.max(window.innerHeight, window.innerWidth) / 2;
+    const holeRadius = 100;
+    const dist = 100 + c * ((pageRadius - holeRadius) / 12);
+
     // draw a circle
     for (let i = 0; i < 360; i += 2) {
       const distance = dist + Math.random() * 30;
