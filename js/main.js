@@ -4,7 +4,7 @@ var paperjs =
 // creates DOM element of type
 function e(type, attrs) {
   var elem = document.createElement(type);
-  Object.keys(attrs).forEach(function(key) {
+  Object.keys(attrs).forEach(function (key) {
     elem.setAttribute(key, attrs[key]);
   });
   return elem;
@@ -12,12 +12,12 @@ function e(type, attrs) {
 
 // usual is a numbered script + maybe a canvas
 function sketch(i, withCanvas, deps) {
-  return function() {
+  return function () {
     // Maybe add a canvas
     if (withCanvas) {
       document.body.prepend(
         e("canvas", {
-          id: "canvas-1"
+          id: "canvas-1",
         })
       );
     }
@@ -25,7 +25,7 @@ function sketch(i, withCanvas, deps) {
     // Add the sketch script
     document.body.appendChild(
       e("script", {
-        src: `/js/sketch${i}.js`
+        src: `/js/sketch${i}.js`,
       })
     );
   };
@@ -39,14 +39,14 @@ function sketch0() {
     e("canvas", {
       resize: "true",
       hidpi: "off",
-      id: "canvas-1"
+      id: "canvas-1",
     })
   );
 
   // append paper.js
   document.body.appendChild(
     e("script", {
-      src: paperjs
+      src: paperjs,
     })
   );
 
@@ -55,7 +55,7 @@ function sketch0() {
     e("script", {
       src: "/js/sketch0.js",
       type: "text/paperscript",
-      canvas: "canvas-1"
+      canvas: "canvas-1",
     })
   );
 }
@@ -65,8 +65,9 @@ var sketch2 = sketch(2, true);
 var sketch3 = sketch(3, true);
 var sketch4 = sketch(4, true);
 var sketch5 = sketch(5);
+var sketch6 = sketch(6);
 
-var sketches = [sketch0, sketch1, sketch2, sketch3, sketch4, sketch5];
+var sketches = [sketch0, sketch1, sketch2, sketch3, sketch4, sketch5, sketch6];
 var rand = Math.floor(Math.random() * sketches.length);
 
 var testing = null;
