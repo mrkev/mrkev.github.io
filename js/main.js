@@ -66,8 +66,18 @@ var sketch3 = sketch(3, true);
 var sketch4 = sketch(4, true);
 var sketch5 = sketch(5);
 var sketch6 = sketch(6);
+var sketch7 = sketch(7, true);
 
-var sketches = [sketch0, sketch1, sketch2, sketch3, sketch4, sketch5, sketch6];
+var sketches = [
+  sketch0,
+  sketch1,
+  sketch2,
+  sketch3,
+  sketch4,
+  sketch5,
+  sketch6,
+  sketch7,
+];
 var rand = Math.floor(Math.random() * sketches.length);
 
 var testing = null;
