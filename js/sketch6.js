@@ -3,7 +3,9 @@
 /** Scene, renderer, camera */
 
 var scene = new THREE.Scene();
-var renderer = new THREE.WebGLRenderer();
+var renderer = new THREE.WebGLRenderer({
+  canvas: document.getElementById("canvas-1"),
+});
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 var camera = new THREE.PerspectiveCamera(

@@ -7,7 +7,9 @@ var camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
-var renderer = new THREE.WebGLRenderer();
+var renderer = new THREE.WebGLRenderer({
+  canvas: document.getElementById("canvas-1"),
+});
 
 window.addEventListener("resize", onWindowResize, false);
 function onWindowResize() {
@@ -45,7 +47,7 @@ for (var i = -size; i <= size; i += step) {
 var line = new THREE.LineSegments(plane, material);
 scene.add(line);
 
-var animate = function() {
+var animate = function () {
   requestAnimationFrame(animate);
 
   camera.position.z -= 0.02;

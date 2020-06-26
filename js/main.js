@@ -64,8 +64,8 @@ var sketch1 = sketch(1, true);
 var sketch2 = sketch(2, true);
 var sketch3 = sketch(3, true);
 var sketch4 = sketch(4, true);
-var sketch5 = sketch(5);
-var sketch6 = sketch(6);
+var sketch5 = sketch(5, true);
+var sketch6 = sketch(6, true);
 var sketch7 = sketch(7, true);
 
 var sketches = [
@@ -80,8 +80,11 @@ var sketches = [
 ];
 var rand = Math.floor(Math.random() * sketches.length);
 
-var testing = null;
-if (testing !== null) {
+var testing =
+  /^localhost/.test(window.location.host) &&
+  parseInt(window.location.hash.substr(1));
+
+if (testing !== false && !Number.isNaN(testing)) {
   sketches[testing]();
 } else {
   sketches[rand]();
