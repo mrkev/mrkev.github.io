@@ -60,23 +60,17 @@ function sketch0() {
   );
 }
 
-var sketch1 = sketch(1, true);
-var sketch2 = sketch(2, true);
-var sketch3 = sketch(3, true);
-var sketch4 = sketch(4, true);
-var sketch5 = sketch(5, true);
-var sketch6 = sketch(6, true);
-var sketch7 = sketch(7, true);
-
 var sketches = [
   sketch0,
-  sketch1,
-  sketch2,
-  sketch3,
-  sketch4,
-  sketch5,
-  sketch6,
-  sketch7,
+  sketch(1, true),
+  sketch(2, true),
+  sketch(3, true),
+  sketch(4, true),
+  sketch(5, true),
+  sketch(6, true),
+  sketch(7, true),
+  sketch(8, true, "pts"),
+  sketch(9, true, "pts"),
 ];
 var rand = Math.floor(Math.random() * sketches.length);
 
