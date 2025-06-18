@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Kevin Chavez</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=0"
+    />
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="Kevin,Chavez" />
+    <meta name="author" content="Kevin Chavez" />
+    <meta name="description" content="Building software." />
+    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon/favicon-32x32.png" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/pts/0.10.5/pts.min.js"
+      integrity="sha512-uHA0Fm27FsjOUz5aS/5StEnRvBIYotMEDNYZU40T05NT3KCdkI3D7H4FGEvDjArhv+w+/ouzKtXMFWjAb5BcFQ=="
+      crossorigin="anonymous"
+    ></script>
 
-<head>
-  <title>Kevin Chavez</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
-  <meta charset="UTF-8" />
-  <meta name="keywords" content="Kevin,Chavez" />
-  <meta name="author" content="Kevin Chavez" />
-  <meta name="description" content="Building software." />
-  <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
-  <link rel="shortcut icon" href="/favicon/favicon-32x32.png" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pts/0.10.5/pts.min.js"
-    integrity="sha512-uHA0Fm27FsjOUz5aS/5StEnRvBIYotMEDNYZU40T05NT3KCdkI3D7H4FGEvDjArhv+w+/ouzKtXMFWjAb5BcFQ=="
-    crossorigin="anonymous"></script>
-
-  <script type="application/ld+json">
+    <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
@@ -27,150 +31,199 @@
         ]
       }
     </script>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-65532412-7"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-65532412-7');
-  </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-65532412-7"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-65532412-7");
+    </script>
 
+    <style type="text/css">
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
 
-  <style type="text/css">
-    html,
-    body {
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-    }
+      h1 {
+        font-style: italic;
+        padding: 0.1rem 0.8rem 0 0.5rem;
+        background: black;
+        display: inline-block;
+        transform: rotate(0.5deg);
+        margin: 0;
+      }
 
-    h1 {
-      font-style: italic;
-      padding: 0.1rem 0.8rem 0 0.5rem;
-      background: black;
-      display: inline-block;
-      transform: rotate(0.5deg);
-      margin: 0;
-    }
+      h2 {
+        font-size: 18px;
+        font-style: italic;
+        padding: 0rem 0.4rem 0 0.2rem;
+        background: black;
+        display: inline-block;
+        transform: rotate(0.5deg);
+        margin: 0;
+      }
 
-    h2 {
-      font-size: 18px;
-      font-style: italic;
-      padding: 0rem 0.4rem 0 0.2rem;
-      background: black;
-      display: inline-block;
-      transform: rotate(0.5deg);
-      margin: 0;
-    }
+      ul {
+        transform: rotate(-0.5deg);
+      }
 
-    ul {
-      transform: rotate(-0.5deg);
-    }
+      li {
+        display: inline-block;
+        background: black;
+        padding: 0.3rem 0.5rem 0.2rem 0.5rem;
+        margin-bottom: 4px;
+      }
 
-    li {
-      display: inline-block;
-      background: black;
-      padding: 0.3rem 0.5rem 0.2rem 0.5rem;
-      margin-bottom: 4px;
-    }
+      body {
+        font-family: sans-serif;
+        color: white;
+        margin: 0px;
+        background-color: black;
+      }
 
-    body {
-      font-family: sans-serif;
-      color: white;
-      margin: 0px;
-      background-color: black;
-    }
+      a:link,
+      a:visited {
+        pointer-events: auto;
+        color: white;
+      }
 
-    a:link,
-    a:visited {
-      pointer-events: auto;
-      color: white;
-    }
+      section {
+        position: absolute;
+        pointer-events: none;
+        bottom: 0;
+        padding: 0 0 12% 20%;
+      }
 
-    section {
-      position: absolute;
-      pointer-events: none;
-      bottom: 0;
-      padding: 0 0 12% 20%;
-    }
+      canvas[resize] {
+        width: 100%;
+        height: 100%;
+      }
 
-    canvas[resize] {
-      width: 100%;
-      height: 100%;
-    }
+      #exp {
+        position: absolute;
+        pointer-events: none;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: -1000;
+      }
+    </style>
+    <!-- For halftone effect -->
+    <!-- From: https://github.com/patrickmatte/color-halftone-filter -->
+    <script src="js/lib/tsunami/utils/Debug.js"></script>
+    <script src="js/lib/tsunami/geom/Rectangle.js"></script>
+    <script src="js/lib/tsunami/geom/Point.js"></script>
+    <script src="js/lib/tsunami/geom/Ratio.js"></script>
+    <script src="js/lib/tsunami/filters/Blendmode.js"></script>
+    <script src="js/lib/tsunami/filters/ColorHalftoneFilter.js"></script>
+    <!-- Perlin noise. window.noise -->
+    <!-- From: https://github.com/josephg/noisejs -->
+    <script src="/js/lib/perlin.js"></script>
+    <!-- Libraries -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script> -->
 
-    #exp {
-      position: absolute;
-      pointer-events: none;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 100%;
-      z-index: -1000;
-    }
-  </style>
-  <!-- For halftone effect -->
-  <!-- From: https://github.com/patrickmatte/color-halftone-filter -->
-  <script src="js/lib/tsunami/utils/Debug.js"></script>
-  <script src="js/lib/tsunami/geom/Rectangle.js"></script>
-  <script src="js/lib/tsunami/geom/Point.js"></script>
-  <script src="js/lib/tsunami/geom/Ratio.js"></script>
-  <script src="js/lib/tsunami/filters/Blendmode.js"></script>
-  <script src="js/lib/tsunami/filters/ColorHalftoneFilter.js"></script>
-  <!-- Perlin noise. window.noise -->
-  <!-- From: https://github.com/josephg/noisejs -->
-  <script src="/js/lib/perlin.js"></script>
-  <!-- Libraries -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+  </head>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
-</head>
-
-<body>
-  <!-- piwik.pro -->
-  <script type="text/javascript">
-    (function (window, document, dataLayerName, id) {
-      window[dataLayerName] = window[dataLayerName] || [], window[dataLayerName].push({ start: (new Date).getTime(), event: "stg.start" }); var scripts = document.getElementsByTagName('script')[0], tags = document.createElement('script');
-      function stgCreateCookie(a, b, c) { var d = ""; if (c) { var e = new Date; e.setTime(e.getTime() + 24 * c * 60 * 60 * 1e3), d = "; expires=" + e.toUTCString() } document.cookie = a + "=" + b + d + "; path=/" }
-      var isStgDebug = (window.location.href.match("stg_debug") || document.cookie.match("stg_debug")) && !window.location.href.match("stg_disable_debug"); stgCreateCookie("stg_debug", isStgDebug ? 1 : "", isStgDebug ? 14 : -1);
-      var qP = []; dataLayerName !== "dataLayer" && qP.push("data_layer_name=" + dataLayerName), isStgDebug && qP.push("stg_debug"); var qPString = qP.length > 0 ? ("?" + qP.join("&")) : "";
-      tags.async = !0, tags.src = "https://aykev.containers.piwik.pro/" + id + ".js" + qPString, scripts.parentNode.insertBefore(tags, scripts);
-      !function (a, n, i) { a[n] = a[n] || {}; for (var c = 0; c < i.length; c++)!function (i) { a[n][i] = a[n][i] || {}, a[n][i].api = a[n][i].api || function () { var a = [].slice.call(arguments, 0); "string" == typeof a[0] && window[dataLayerName].push({ event: n + "." + i + ":" + a[0], parameters: [].slice.call(arguments, 1) }) } }(i[c]) }(window, "ppms", ["tm", "cm"]);
-    })(window, document, 'dataLayer', 'ce45e582-b6aa-4577-b686-f1ed3ea78e81');
-  </script>
-  <div id="exp">
-    <!-- Canvas gets inserted here -->
-  </div>
-  <section>
-    <h1>Kevin Chavez</h1>
-    <ul>
-      <li><a href="doc/Resume_2024_Oct.pdf">resume/CV</a></li>
-      <li><a href="http://aykev.dev/blog">Blog</a></li>
-      <li><a href="https://twitter.com/aykev">Twitter</a></li>
-      <li><a href="https://mastodon.social/@aykev">Mastodon</a></li>
-      <br />
-      <li><a href="https://github.com/mrkev">Github</a></li>
-      <li><a href="https://instagram.com/kevins.pics">Instagram</a></li>
-      <li><a href="https://soundcloud.com/mr-onion">Soundcloud</a></li>
-      <li><a href="https://k2-72.tumblr.com">old blog</a></li>
-    </ul>
-    <h2>more...</h2>
-    <ul style="padding-left:20px;">
-      <li><a href="https://aykev.dev/fsmgen/">fsmgen</a></li>
-      <li><a href="https://aykev.dev/fnMatch/">fnMatch</a></li>
-      <li><a href="https://aykev.dev/cornell/">./cornell</a></li>
-      <li><a href="https://aykev.dev/robot-1">robot-1</a></li>
-      <li><a href="/projects.html"><i>see list...</i></a></li>
-    </ul>
-    <h2>about</h2>
-    <ul style="padding-left:30px;" class="list">
-      <li>I'm a software engineer</li><br />
-      <li>Soy de Guadalajara, criado en Puerto Vallarta</li><br />
-      <li>I like working on web infra</li><br />
-    </ul>
-  </section>
-  <script src="js/main.js" type="text/javascript"></script>
-</body>
-
+  <body>
+    <!-- piwik.pro -->
+    <script type="text/javascript">
+      (function (window, document, dataLayerName, id) {
+        (window[dataLayerName] = window[dataLayerName] || []),
+          window[dataLayerName].push({
+            start: new Date().getTime(),
+            event: "stg.start",
+          });
+        var scripts = document.getElementsByTagName("script")[0],
+          tags = document.createElement("script");
+        function stgCreateCookie(a, b, c) {
+          var d = "";
+          if (c) {
+            var e = new Date();
+            e.setTime(e.getTime() + 24 * c * 60 * 60 * 1e3),
+              (d = "; expires=" + e.toUTCString());
+          }
+          document.cookie = a + "=" + b + d + "; path=/";
+        }
+        var isStgDebug =
+          (window.location.href.match("stg_debug") ||
+            document.cookie.match("stg_debug")) &&
+          !window.location.href.match("stg_disable_debug");
+        stgCreateCookie("stg_debug", isStgDebug ? 1 : "", isStgDebug ? 14 : -1);
+        var qP = [];
+        dataLayerName !== "dataLayer" &&
+          qP.push("data_layer_name=" + dataLayerName),
+          isStgDebug && qP.push("stg_debug");
+        var qPString = qP.length > 0 ? "?" + qP.join("&") : "";
+        (tags.async = !0),
+          (tags.src =
+            "https://aykev.containers.piwik.pro/" + id + ".js" + qPString),
+          scripts.parentNode.insertBefore(tags, scripts);
+        !(function (a, n, i) {
+          a[n] = a[n] || {};
+          for (var c = 0; c < i.length; c++)
+            !(function (i) {
+              (a[n][i] = a[n][i] || {}),
+                (a[n][i].api =
+                  a[n][i].api ||
+                  function () {
+                    var a = [].slice.call(arguments, 0);
+                    "string" == typeof a[0] &&
+                      window[dataLayerName].push({
+                        event: n + "." + i + ":" + a[0],
+                        parameters: [].slice.call(arguments, 1),
+                      });
+                  });
+            })(i[c]);
+        })(window, "ppms", ["tm", "cm"]);
+      })(window, document, "dataLayer", "ce45e582-b6aa-4577-b686-f1ed3ea78e81");
+    </script>
+    <div id="exp">
+      <!-- Canvas gets inserted here -->
+    </div>
+    <section>
+      <h1>Kevin Chavez</h1>
+      <ul>
+        <li><a href="doc/Resume_2024_Scale.pdf">resume/CV</a></li>
+        <li><a href="http://aykev.dev/blog">Blog</a></li>
+        <li><a href="https://twitter.com/aykev">Twitter</a></li>
+        <li><a href="https://mastodon.social/@aykev">Mastodon</a></li>
+        <br />
+        <li><a href="https://github.com/mrkev">Github</a></li>
+        <li><a href="https://instagram.com/kevins.pics">Instagram</a></li>
+        <li><a href="https://soundcloud.com/mr-onion">Soundcloud</a></li>
+        <li><a href="https://k2-72.tumblr.com">old blog</a></li>
+      </ul>
+      <h2>more...</h2>
+      <ul style="padding-left: 20px">
+        <li><a href="https://aykev.dev/fsmgen/">fsmgen</a></li>
+        <li><a href="https://aykev.dev/fnMatch/">fnMatch</a></li>
+        <li><a href="https://aykev.dev/cornell/">./cornell</a></li>
+        <li><a href="https://aykev.dev/robot-1">robot-1</a></li>
+        <li>
+          <a href="/projects.html"><i>see list...</i></a>
+        </li>
+      </ul>
+      <h2>about</h2>
+      <ul style="padding-left: 30px" class="list">
+        <li>I'm a software engineer</li>
+        <br />
+        <li>Soy de Guadalajara, criado en Puerto Vallarta</li>
+        <br />
+        <li>I like working on web infra</li>
+        <br />
+      </ul>
+    </section>
+    <script src="js/main.js" type="text/javascript"></script>
+  </body>
 </html>
