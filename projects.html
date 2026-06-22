@@ -1,232 +1,286 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kevin Chavez - Projects</title>
+    <script
+      src="https://analytics-peach-omega.vercel.app/embed.js"
+      async
+    ></script>
+    <style>
+      body {
+        line-height: 1.4;
+      }
+    </style>
+    <script>
+      function createElement(tag, props) {
+        const { children, ...rest } = props ?? {};
+        const elem = document.createElement(tag);
+        if (Array.isArray(children)) {
+          for (const child of children) {
+            elem.appendChild(child);
+          }
+        }
+        for (const key in rest) {
+          elem.setAttribute(key, rest[key]);
+        }
+        return elem;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kevin Chavez - Projects</title>
-  <script src="https://analytics-peach-omega.vercel.app/embed.js" async></script>
-  <style>
-    body {
-      line-height: 1.4;
-    }
-  </style>
-  <script>
-    function createElement(tag, props) {
-      const { children, ...rest } = props ?? {}
-      const elem = document.createElement(tag);
-      if (Array.isArray(children)) {
-        for (const child of children) {
-          elem.appendChild(child);
+      function timeAgo(input) {
+        const date = input instanceof Date ? input : new Date(input);
+        const formatter = new Intl.RelativeTimeFormat("en");
+        const ranges = {
+          years: 3600 * 24 * 365,
+          months: 3600 * 24 * 30,
+          weeks: 3600 * 24 * 7,
+          days: 3600 * 24,
+          hours: 3600,
+          minutes: 60,
+          seconds: 1,
+        };
+        const secondsElapsed = (date.getTime() - Date.now()) / 1000;
+        for (let key in ranges) {
+          if (ranges[key] < Math.abs(secondsElapsed)) {
+            const delta = secondsElapsed / ranges[key];
+            return formatter.format(Math.round(delta), key);
+          }
         }
       }
-      for (const key in rest) {
-        elem.setAttribute(key, rest[key]);
-      }
-      return elem;
-    }
 
-    function timeAgo(input) {
-      const date = (input instanceof Date) ? input : new Date(input);
-      const formatter = new Intl.RelativeTimeFormat('en');
-      const ranges = {
-        years: 3600 * 24 * 365,
-        months: 3600 * 24 * 30,
-        weeks: 3600 * 24 * 7,
-        days: 3600 * 24,
-        hours: 3600,
-        minutes: 60,
-        seconds: 1
-      };
-      const secondsElapsed = (date.getTime() - Date.now()) / 1000;
-      for (let key in ranges) {
-        if (ranges[key] < Math.abs(secondsElapsed)) {
-          const delta = secondsElapsed / ranges[key];
-          return formatter.format(Math.round(delta), key);
+      const template = document.createElement("template");
+      template.innerHTML = `<slot />`;
+
+      class ProjectComponent extends HTMLElement {
+        constructor() {
+          super();
+
+          const slot = document.createElement("slot");
+          const span = createElement("i", { children: [slot] });
+          // const span = createElement('template', {
+          //   children: [
+          //     // createElement('style'),
+          //     createElement('i', { children: [slot] })
+          //   ]
+          // })
+          console.log(span);
+
+          slot.addEventListener("slotchange", function (e) {
+            const nodes = slot.assignedNodes();
+            console.log("host text: ", parseInt(nodes[0].textContent));
+            nodes[0].textContent = timeAgo(
+              new Date(`${parseInt(nodes[0].textContent)}-1-1`),
+            );
+          });
+
+          const shadowRoot = this.attachShadow({ mode: "open" });
+          shadowRoot.appendChild(span);
         }
-      }
-    }
 
-    const template = document.createElement('template');
-    template.innerHTML = `<slot />`;
+        // connectedCallback() {
+        //   console.log(this.childNodes)
+        //   const year = parseInt(this.childNodes[0].textContent);
+        //   if (Number.isNaN(year)) {s
+        //     console.warn(`ago-year: ${this.childNodes[0].textContent}`);
+        //     return;
+        //   }
 
-    class ProjectComponent extends HTMLElement {
-      constructor() {
-        super();
+        //   this.innerText = timeAgo(new Date(`1-1-${year}`));
 
-        const slot = document.createElement('slot');
-        const span = createElement('i', { children: [slot] })
-        // const span = createElement('template', {
-        //   children: [
-        //     // createElement('style'),
-        //     createElement('i', { children: [slot] })
-        //   ]
-        // })
-        console.log(span)
-
-        slot.addEventListener('slotchange', function (e) {
-          const nodes = slot.assignedNodes();
-          console.log('host text: ', parseInt(nodes[0].textContent));
-          nodes[0].textContent = timeAgo(new Date(`${parseInt(nodes[0].textContent)}-1-1`))
-        });
-
-        const shadowRoot = this.attachShadow({ mode: 'open' });
-        shadowRoot.appendChild(span);
+        //   // this.innerHTML = `
+        //   //   <li><a href="https://aykev.dev/fsmgen/">fsmgen</a> - DSL to generate Finite State Machine diagrams</li>
+        //   // `;
+        // }
       }
 
-      // connectedCallback() {
-      //   console.log(this.childNodes)
-      //   const year = parseInt(this.childNodes[0].textContent);
-      //   if (Number.isNaN(year)) {s
-      //     console.warn(`ago-year: ${this.childNodes[0].textContent}`);
-      //     return;
-      //   }
+      window.customElements.define("ago-year", ProjectComponent);
+    </script>
+  </head>
 
-      //   this.innerText = timeAgo(new Date(`1-1-${year}`));
-
-
-
-      //   // this.innerHTML = `
-      //   //   <li><a href="https://aykev.dev/fsmgen/">fsmgen</a> - DSL to generate Finite State Machine diagrams</li>
-      //   // `;
-      // }
-
-
-    }
-
-    window.customElements.define("ago-year", ProjectComponent);
-  </script>
-</head>
-
-<body>
-  <!-- piwik.pro -->
-  <script type="text/javascript">
-    (function (window, document, dataLayerName, id) {
-      window[dataLayerName] = window[dataLayerName] || [], window[dataLayerName].push({ start: (new Date).getTime(), event: "stg.start" }); var scripts = document.getElementsByTagName('script')[0], tags = document.createElement('script');
-      function stgCreateCookie(a, b, c) { var d = ""; if (c) { var e = new Date; e.setTime(e.getTime() + 24 * c * 60 * 60 * 1e3), d = "; expires=" + e.toUTCString() } document.cookie = a + "=" + b + d + "; path=/" }
-      var isStgDebug = (window.location.href.match("stg_debug") || document.cookie.match("stg_debug")) && !window.location.href.match("stg_disable_debug"); stgCreateCookie("stg_debug", isStgDebug ? 1 : "", isStgDebug ? 14 : -1);
-      var qP = []; dataLayerName !== "dataLayer" && qP.push("data_layer_name=" + dataLayerName), isStgDebug && qP.push("stg_debug"); var qPString = qP.length > 0 ? ("?" + qP.join("&")) : "";
-      tags.async = !0, tags.src = "https://aykev.containers.piwik.pro/" + id + ".js" + qPString, scripts.parentNode.insertBefore(tags, scripts);
-      !function (a, n, i) { a[n] = a[n] || {}; for (var c = 0; c < i.length; c++)!function (i) { a[n][i] = a[n][i] || {}, a[n][i].api = a[n][i].api || function () { var a = [].slice.call(arguments, 0); "string" == typeof a[0] && window[dataLayerName].push({ event: n + "." + i + ":" + a[0], parameters: [].slice.call(arguments, 1) }) } }(i[c]) }(window, "ppms", ["tm", "cm"]);
-    })(window, document, 'dataLayer', 'ce45e582-b6aa-4577-b686-f1ed3ea78e81');
-  </script>
-  <p>various projects by <a href="http://twitter.com/@aykev">@aykev</a></p>
-  <ul>
-    <li>
-      <a href="https://pamba-c5951.web.app/"><i>unnamed web daw</i></a>
-      - an experiment in building a <a href="https://en.wikipedia.org/wiki/Digital_audio_workstation">DAW</a> on the web
-      <i>(ongoing)</i>
-    </li>
-    <li>
-      <a href="https://twitter.com/aykev/status/1717740772819374172"><i>unnamed state library</i></a>
-      - a <a href="https://twitter.com/aykev/status/1719588611413426608">fast</a> React state library with built-in undo
-      <i>(ongoing)</i>
-    </li>
-    <li>
-      <a href="https://aykev.dev/blog/">Midnight Joke</a>
-      - a blog with very little software engineering content
-      <i>(ongoing)</i>
-    </li>
-    <li>
-      <a href="https://aykev.dev/webgpu-waveform/">webgpu-waveform</a>
-      - a component to efficiently render audio waveforms using WebGPU <a
-        href="https://news.ycombinator.com/item?id=40046774">(Hacker News Thread)</a>
-    </li>
-    <li>
-      <a href="https://aykev.dev/new-react-ts-lib/">new-react-ts-lib</a>
-      - a template to create NPM libraries using TS + React + Vite
-    </li>
-    <li>
-      <a href="https://aykev.dev/fsmgen/">fsmgen</a>
-      - DSL to generate Finite State Machine diagrams
-    </li>
-    <li>
-      <a href="https://aykev.dev/fnMatch/">fnMatch</a>
-      - pattern matching library for JavaScript, without a build step
-    </li>
-    <li>
-      <a href="https://aykev.dev/robot-1">robot-1</a>
-      - a very simple web synth
-    </li>
-    <li>
-      <a href="https://github.com/mrkev/fuseom">fuseom</a>
-      - a JavaScript object model for filesystems in userspace
-    </li>
-    <li>
-      <a href="https://aykev.dev/cornell/">./cornell</a>
-      - CLI for Cornell University-related things
-    </li>
-  </ul>
-  <p>archived/deprecated:</p>
-  <ul>
-    <li>
-      <a href="https://github.com/mrkev/retumble">retumble</a>
-      - build Tumblr themes with React
-      <ago-year>2016</ago-year>
-    </li>
-    <li>
-      <a href="https://github.com/mrkev/retumble-blank">retumble-blank</a>
-      - starter tumblr template to use with
-      retumble
-      <ago-year>2016</ago-year>
-    </li>
-    <li>
-      <a href="https://github.com/mrkev/react-feather">react-feather</a>
-      - a tumblr theme written in React
-      <ago-year>2016</ago-year>
-    </li>
-    <li>
-      <a href="https://www.npmjs.com/package/fb-falafel">fb-falafel</a>
-      - a CLI for Facebook
-      <ago-year>2015</ago-year>
-    </li>
-    <li>
-      <a href="https://github.com/mrkev/generator-typescript">generator-typescript</a>
-      - TypeScript project generator for Yeoman
-      <ago-year>2014</ago-year>
-    </li>
-    <!-- <li>
+  <body>
+    <!-- piwik.pro -->
+    <script type="text/javascript">
+      (function (window, document, dataLayerName, id) {
+        ((window[dataLayerName] = window[dataLayerName] || []),
+          window[dataLayerName].push({
+            start: new Date().getTime(),
+            event: "stg.start",
+          }));
+        var scripts = document.getElementsByTagName("script")[0],
+          tags = document.createElement("script");
+        function stgCreateCookie(a, b, c) {
+          var d = "";
+          if (c) {
+            var e = new Date();
+            (e.setTime(e.getTime() + 24 * c * 60 * 60 * 1e3),
+              (d = "; expires=" + e.toUTCString()));
+          }
+          document.cookie = a + "=" + b + d + "; path=/";
+        }
+        var isStgDebug =
+          (window.location.href.match("stg_debug") ||
+            document.cookie.match("stg_debug")) &&
+          !window.location.href.match("stg_disable_debug");
+        stgCreateCookie("stg_debug", isStgDebug ? 1 : "", isStgDebug ? 14 : -1);
+        var qP = [];
+        (dataLayerName !== "dataLayer" &&
+          qP.push("data_layer_name=" + dataLayerName),
+          isStgDebug && qP.push("stg_debug"));
+        var qPString = qP.length > 0 ? "?" + qP.join("&") : "";
+        ((tags.async = !0),
+          (tags.src =
+            "https://aykev.containers.piwik.pro/" + id + ".js" + qPString),
+          scripts.parentNode.insertBefore(tags, scripts));
+        !(function (a, n, i) {
+          a[n] = a[n] || {};
+          for (var c = 0; c < i.length; c++)
+            !(function (i) {
+              ((a[n][i] = a[n][i] || {}),
+                (a[n][i].api =
+                  a[n][i].api ||
+                  function () {
+                    var a = [].slice.call(arguments, 0);
+                    "string" == typeof a[0] &&
+                      window[dataLayerName].push({
+                        event: n + "." + i + ":" + a[0],
+                        parameters: [].slice.call(arguments, 1),
+                      });
+                  }));
+            })(i[c]);
+        })(window, "ppms", ["tm", "cm"]);
+      })(window, document, "dataLayer", "ce45e582-b6aa-4577-b686-f1ed3ea78e81");
+    </script>
+    <p>various projects by <a href="http://twitter.com/@aykev">@aykev</a></p>
+    <ul>
+      <li>
+        <a href="https://pamba-c5951.web.app/"><i>unnamed web daw</i></a>
+        - an experiment in building a
+        <a href="https://en.wikipedia.org/wiki/Digital_audio_workstation"
+          >DAW</a
+        >
+        on the web
+        <i>(ongoing)</i>
+      </li>
+      <li>
+        <a href="https://twitter.com/aykev/status/1717740772819374172"
+          ><i>unnamed state library</i></a
+        >
+        - a
+        <a href="https://twitter.com/aykev/status/1719588611413426608">fast</a>
+        React state library with built-in undo
+        <i>(ongoing)</i>
+      </li>
+      <li>
+        <a href="https://aykev.dev/blog/">Midnight Joke</a>
+        - a blog with very little software engineering content
+        <i>(ongoing)</i>
+      </li>
+      <li>
+        <a href="https://aykev.dev/blog/">vite-plugin-faust</a>
+        - a vite plugin to transform Faust DSP files into importable JavaScript
+        (+ WASM) modules
+      </li>
+      <li>
+        <a href="https://aykev.dev/webgpu-waveform/">webgpu-waveform</a>
+        - a component to efficiently render audio waveforms using WebGPU
+        <a href="https://news.ycombinator.com/item?id=40046774"
+          >(Hacker News Thread)</a
+        >
+      </li>
+      <li>
+        <a href="https://aykev.dev/new-react-ts-lib/">new-react-ts-lib</a>
+        - a template to create NPM libraries using TS + React + Vite
+      </li>
+      <li>
+        <a href="https://aykev.dev/fsmgen/">fsmgen</a>
+        - DSL to generate Finite State Machine diagrams
+      </li>
+      <li>
+        <a href="https://aykev.dev/fnMatch/">fnMatch</a>
+        - pattern matching library for JavaScript, without a build step
+      </li>
+      <li>
+        <a href="https://aykev.dev/robot-1">robot-1</a>
+        - a very simple web synth
+      </li>
+      <li>
+        <a href="https://github.com/mrkev/fuseom">fuseom</a>
+        - a JavaScript object model for filesystems in userspace
+      </li>
+      <li>
+        <a href="https://aykev.dev/cornell/">./cornell</a>
+        - CLI for Cornell University-related things
+      </li>
+    </ul>
+    <p>archived/deprecated:</p>
+    <ul>
+      <li>
+        <a href="https://github.com/mrkev/retumble">retumble</a>
+        - build Tumblr themes with React
+        <ago-year>2016</ago-year>
+      </li>
+      <li>
+        <a href="https://github.com/mrkev/retumble-blank">retumble-blank</a>
+        - starter tumblr template to use with retumble
+        <ago-year>2016</ago-year>
+      </li>
+      <li>
+        <a href="https://github.com/mrkev/react-feather">react-feather</a>
+        - a tumblr theme written in React
+        <ago-year>2016</ago-year>
+      </li>
+      <li>
+        <a href="https://www.npmjs.com/package/fb-falafel">fb-falafel</a>
+        - a CLI for Facebook
+        <ago-year>2015</ago-year>
+      </li>
+      <li>
+        <a href="https://github.com/mrkev/generator-typescript"
+          >generator-typescript</a
+        >
+        - TypeScript project generator for Yeoman
+        <ago-year>2014</ago-year>
+      </li>
+      <!-- <li>
       <a href="https://github.com/mrkev/music">music</a>
       - CLI for Spotify
     </li> -->
-    <li>
-      <a href="https://github.com/mrkev/bpm-tick">bpm-tick</a>
-      - a JavaScript metronome for rhythmic callbacks
-      <ago-year>2014</ago-year>
-    </li>
-    <li>
-      <a href="https://github.com/mrkev/plant.js">plant.js</a>
-      - a lightweight web-scraping library
-      <ago-year>2013</ago-year>
-    </li>
-    <li>
-      <a href="https://github.com/mrkev/go2sublime">go2sublime</a>
-      - utility to open the current Finder window in Sublime Text
-      <ago-year>2013</ago-year>
-    </li>
-    <li>
-      <a href="https://github.com/mrkev/iroh">iroh</a>
-      - JavaScript SDK to fetch Cornell Dining menus
-      <ago-year>2013</ago-year>
-    </li>
-    <li>
-      <a href="https://github.com/mrkev/redapi">RedAPI</a>
-      - unofficial API for Cornell University data
-      <ago-year>2013</ago-year>
-    </li>
-    <li>
-      <a href="https://github.com/mrkev/ColorSliders">ColorSliders</a>
-      - single-slider iOS color picker
-      <ago-year>2013</ago-year>
-    </li>
+      <li>
+        <a href="https://github.com/mrkev/bpm-tick">bpm-tick</a>
+        - a JavaScript metronome for rhythmic callbacks
+        <ago-year>2014</ago-year>
+      </li>
+      <li>
+        <a href="https://github.com/mrkev/plant.js">plant.js</a>
+        - a lightweight web-scraping library
+        <ago-year>2013</ago-year>
+      </li>
+      <li>
+        <a href="https://github.com/mrkev/go2sublime">go2sublime</a>
+        - utility to open the current Finder window in Sublime Text
+        <ago-year>2013</ago-year>
+      </li>
+      <li>
+        <a href="https://github.com/mrkev/iroh">iroh</a>
+        - JavaScript SDK to fetch Cornell Dining menus
+        <ago-year>2013</ago-year>
+      </li>
+      <li>
+        <a href="https://github.com/mrkev/redapi">RedAPI</a>
+        - unofficial API for Cornell University data
+        <ago-year>2013</ago-year>
+      </li>
+      <li>
+        <a href="https://github.com/mrkev/ColorSliders">ColorSliders</a>
+        - single-slider iOS color picker
+        <ago-year>2013</ago-year>
+      </li>
 
-    <!-- <li><a href="https://github.com/mrkev/bingbling">BingBling</a>
+      <!-- <li><a href="https://github.com/mrkev/bingbling">BingBling</a>
        - a scri</li> -->
 
-    <!-- <li><a href=""></a></li> -->
-
-  </ul>
-
-</body>
-
+      <!-- <li><a href=""></a></li> -->
+    </ul>
+  </body>
 </html>
