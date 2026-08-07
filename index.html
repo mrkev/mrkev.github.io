@@ -7,8 +7,8 @@
       content="width=device-width, initial-scale=1, user-scalable=0"
     />
     <meta charset="UTF-8" />
-    <meta name="keywords" content="Kevin,Chavez" />
     <meta name="author" content="Kevin Chavez" />
+    <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Software engineer focused on web performance and reliability. Ex-Facebook Web Speed, Draft.js maintainer. From Guadalajara, available for consulting."
@@ -51,11 +51,27 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Kevin Chavez",
-        "alumniOf": "Cornell",
+        "url": "https://aykev.dev/",
+        "image": "https://aykev.dev/img/profile.jpg",
+        "jobTitle": "Software Engineer",
+        "description": "Software engineer focused on web performance and reliability. Ex-Facebook Web Speed, Draft.js maintainer.",
+        "knowsAbout": [
+          "Web performance",
+          "Web reliability",
+          "JavaScript",
+          "TypeScript",
+          "React"
+        ],
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Cornell University"
+        },
         "sameAs": [
           "https://twitter.com/aykev",
           "https://github.com/mrkev",
-          "https://instagram.com/kevins.pics"
+          "https://mastodon.social/@aykev",
+          "https://instagram.com/kevins.pics",
+          "https://soundcloud.com/mr-onion"
         ]
       }
     </script>
@@ -223,13 +239,17 @@
       <h1>Kevin Chavez</h1>
       <ul>
         <li><a href="doc/Resume_2026.pdf">resume/CV</a></li>
-        <li><a href="http://aykev.dev/blog">Blog</a></li>
-        <li><a href="https://twitter.com/aykev">Twitter</a></li>
-        <li><a href="https://mastodon.social/@aykev">Mastodon</a></li>
+        <li><a href="https://aykev.dev/blog">Blog</a></li>
+        <li><a rel="me" href="https://twitter.com/aykev">Twitter</a></li>
+        <li><a rel="me" href="https://mastodon.social/@aykev">Mastodon</a></li>
         <br />
-        <li><a href="https://github.com/mrkev">Github</a></li>
-        <li><a href="https://instagram.com/kevins.pics">Instagram</a></li>
-        <li><a href="https://soundcloud.com/mr-onion">Soundcloud</a></li>
+        <li><a rel="me" href="https://github.com/mrkev">Github</a></li>
+        <li>
+          <a rel="me" href="https://instagram.com/kevins.pics">Instagram</a>
+        </li>
+        <li>
+          <a rel="me" href="https://soundcloud.com/mr-onion">Soundcloud</a>
+        </li>
         <li><a href="https://k2-72.tumblr.com">old blog</a></li>
       </ul>
       <h2>more...</h2>
@@ -246,7 +266,7 @@
       <ul style="padding-left: 30px" class="list">
         <li>I'm a software engineer</li>
         <br />
-        <li>Soy de Guadalajara, criado en Puerto Vallarta</li>
+        <li lang="es">Soy de Guadalajara, criado en Puerto Vallarta</li>
         <br />
         <li>I like working on web infra</li>
         <br />
